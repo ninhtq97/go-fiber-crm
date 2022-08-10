@@ -9,19 +9,18 @@ import (
 )
 
 func setupRoutes(app *fiber.App) {
-	app.Group("/api/v1")
+	api := app.Group("/api/v1")
 
-	app.Get("/lead", lead.GetLeads)
-	app.Get("/lead/:id", lead.GetLead)
-	app.Post("/lead", lead.NewLead)
-	app.Delete("/lead/:id", lead.DeleteLead)
+	api.Get("/lead", lead.GetLeads)
+	api.Get("/lead/:id", lead.GetLead)
+	api.Post("/lead", lead.NewLead)
+	api.Delete("/lead/:id", lead.DeleteLead)
 }
 
 func initDatabase() {
-	db := database.Connect()
-
+	database.Connect()
 	fmt.Println("Connection opened to database")
-	db.AutoMigrate(&lead.Lead{})
+	database.DBconn.AutoMigrate(&lead.Lead{})
 	fmt.Println("Database Migrated")
 }
 

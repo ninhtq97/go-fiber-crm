@@ -11,7 +11,9 @@ var (
 )
 
 func Connect() *gorm.DB {
-	db, err := gorm.Open(mysql.Open(DATABASE_URI), &gorm.Config{
+	var err error
+
+	DBconn, err = gorm.Open(mysql.Open(DATABASE_URI), &gorm.Config{
 		SkipDefaultTransaction: true,
 		PrepareStmt:            true,
 	})
@@ -20,7 +22,5 @@ func Connect() *gorm.DB {
 		panic(err)
 	}
 
-	DBconn = db
-
-	return db
+	return nil
 }

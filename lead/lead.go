@@ -12,7 +12,7 @@ type Lead struct {
 	Name    string `json:"name"`
 	Company string `json:"company"`
 	Email   string `json:"email"`
-	Phone   int    `json:"phone"`
+	Phone   string `json:"phone"`
 }
 
 func GetLeads(c *fiber.Ctx) error {
